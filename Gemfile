@@ -5,17 +5,19 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 gem 'devise'
+gem 'bootstrap-sass-rails'
+gem 'kramdown'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'sqlite3'
+  gem 'capybara'
 end
 
 group :production do
   gem 'rails_12factor'
+  gem 'pg'
 end
-
-# Use postgresql as the database for Active Record
-gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

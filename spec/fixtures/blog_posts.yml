@@ -1,0 +1,20 @@
+---
+DEFAULTS: &DEFAULTS
+  title: Test Title
+  body: Now is the time for all good men to come to the aid of their country
+
+raw_post: &RAW_POST
+  <<: *DEFAULTS
+  status: raw
+
+draft_post:
+  <<: *DEFAULTS
+  status: draft
+
+published_post:
+  <<: *DEFAULTS
+  status: published
+
+raw_with_html_scripts:
+  <<: *RAW_POST
+  body: "<script> alert('THINGS!'); </script> other stuff"

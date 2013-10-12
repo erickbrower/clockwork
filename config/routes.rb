@@ -1,8 +1,4 @@
 Clockwork::Application.routes.draw do
-  get "blog_posts/index"
-  get "blog_posts/new"
-  get "blog_posts/edit"
-  get "blog_posts/show"
   root 'landing_pages#index'
 
   devise_for :people
