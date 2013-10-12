@@ -1,6 +1,16 @@
 Clockwork::Application.routes.draw do
-  devise_for :people
+  get "blog_posts/index"
+  get "blog_posts/new"
+  get "blog_posts/edit"
+  get "blog_posts/show"
   root 'landing_pages#index'
+
+  devise_for :people
+
+  resources :people
+
+  resources :blog_posts
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
