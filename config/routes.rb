@@ -6,7 +6,7 @@ Clockwork::Application.routes.draw do
   resources :blog_posts
 
   namespace :admin do
-    resources :dashboard
+    resources :dashboard, only: [:index]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
