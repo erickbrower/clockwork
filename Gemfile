@@ -7,6 +7,7 @@ gem 'rails', '4.0.0'
 gem 'devise'
 gem 'bootstrap-sass-rails'
 gem 'kramdown'
+gem 'six'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

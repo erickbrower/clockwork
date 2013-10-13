@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131012052447) do
+ActiveRecord::Schema.define(version: 20131013015549) do
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(version: 20131012052447) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "person_id"
   end
+
+  add_index "blog_posts", ["person_id"], name: "index_blog_posts_on_person_id"
 
   create_table "people", force: true do |t|
     t.string   "email",                  default: "", null: false
