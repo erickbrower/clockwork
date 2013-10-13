@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= @app_title %></title>
+<meta name="viewport" content="width=devise-width, initial-scale=1.0">
+<%= stylesheet_link_tag "application", :media => "all" %>
+<%= yield :styles %>
+<%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+  <%= yield %>
+</div>
+<%= yield :scripts %>
+<%= javascript_include_tag 'application' %>
+</body>
+</html>

@@ -3,8 +3,6 @@ Clockwork::Application.routes.draw do
 
   devise_for :people
 
-  resources :people
-
   resources :blog_posts
 
   # The priority is based upon order of creation: first created -> highest priority.

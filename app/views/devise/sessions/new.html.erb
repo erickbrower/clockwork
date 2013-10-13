@@ -1,0 +1,32 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: 'form-signin' }) do |f| %>
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li>
+      <%= link_to 'Forgot password?', new_person_password_path %>
+    </li>
+    <li>
+      <%= link_to 'Sign up', new_person_registration_path %>
+    </li>
+  </ul>
+  <h3 class='text-muted'>Sign in </h3>
+</div>
+<div class='row-fluid'>
+  <%= f.email_field :email, { placeholder: 'Email Address', autofocus: true, class: 'form-control' } %>
+</div>
+<div class='row-fluid'>
+  <%= f.password_field :password, { placeholder: 'Password', class: 'form-control' } %>
+</div>
+<% if devise_mapping.rememberable? -%>
+<label class='checkbox'>
+   <%= f.check_box :remember_me %> 
+   Remember me
+</label>
+<% end -%>
+<div class='row-fluid'>
+  <%= f.submit "Sign in", { class: 'btn btn-lg btn-block btn-primary' } %>
+</div>
+<% end %>
+
+<% content_for :styles do %>
+  <%= stylesheet_link_tag 'devise/sessions/new' %>
+<% end %>

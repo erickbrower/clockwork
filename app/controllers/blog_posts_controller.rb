@@ -1,7 +1,7 @@
 class BlogPostsController < ApplicationController
   respond_to :html, :json, :xml
 
-  before_filter :authenticate_person!, except: [:index, :show]
+  #before_filter :authenticate_person!, except: [:index, :show]
 
   def index
     @posts = BlogPost.all
