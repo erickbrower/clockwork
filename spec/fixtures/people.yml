@@ -1,0 +1,8 @@
+---
+DEFAULTS: &DEFAULTS
+  email: 'testemail@email.com'
+  encrypted_password: 'notencrypted'
+
+basic:
+  <<: *DEFAULTS
+

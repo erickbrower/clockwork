@@ -8,6 +8,7 @@ describe BlogPost do
   it { should respond_to :title }
   it { should respond_to :body }
   it { should respond_to :status }
+  it { should respond_to :author }
 
   context 'when validating' do
     describe 'when title is empty' do
