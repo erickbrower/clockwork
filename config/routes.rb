@@ -3,10 +3,9 @@ Clockwork::Application.routes.draw do
 
   devise_for :people
 
-  resources :blog_posts
-
   namespace :admin do
     resources :dashboard, only: [:index]
+    resources :blog_posts
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

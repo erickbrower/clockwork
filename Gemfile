@@ -8,11 +8,13 @@ gem 'devise'
 gem 'bootstrap-sass-rails'
 gem 'kramdown'
 gem 'six'
+gem 'sanitize'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'sqlite3'
   gem 'capybara'
+  gem 'pry'
 end
 
 group :production do

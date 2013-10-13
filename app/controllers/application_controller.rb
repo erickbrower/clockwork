@@ -7,4 +7,14 @@ class ApplicationController < ActionController::Base
   def set_globals
     @app_title = 'Clockwork'
   end
+
+  helper_method :abilities, :can?
+
+  def abilities
+    @abilites ||= Six.new
+  end
+
+  def can?(object, action, subject)
+    abilities.allowed?(object, action, subject)
+  end
 end

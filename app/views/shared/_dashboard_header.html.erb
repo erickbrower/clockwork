@@ -6,15 +6,23 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><%= @app_title %></a>
+      <%= link_to @app_title, admin_dashboard_index_path, class: 'navbar-brand' %>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+        <% if request.url.include? admin_dashboard_index_path %>
         <li class="active">
+        <% else %>
+        <li>
+        <% end %>
           <%= link_to 'Home', admin_dashboard_index_path %>
         </li>
+        <% if request.url.include? admin_blog_posts_manage_path %>
+        <li class="active">
+        <% else %>
         <li>
-          <%= link_to 'Blog Posts', new_blog_post_path %>
+        <% end %>
+          <%= link_to 'Blog Posts', admin_blog_posts_manage_path %>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
