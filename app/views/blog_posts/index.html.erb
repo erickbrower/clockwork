@@ -1,38 +1,39 @@
-<div class='container'>
-  <div class='header'>
-    <ul class='nav nav-pills pull-right'>
-      <li class='active'>
-        <a href='#'>Home</a>
-      </li>
-      <li>
-        <a href='#'>About</a>
-      </li>
-      <li>
-      <%= link_to 'Log out', destroy_person_session_path, method: :delete %>
-      </li>
-    </ul>
-    <h3 class='text-muted'> Blog </h3>
-  </div>
-  <% @posts.each do |post| %>
-  <div class='row-fluid'>
-    <div class='col-lg-9'>
-      <a href='#'><h4><%= post.title %></h4></a>
-    </div>
-    <div class='col-lg-3'>
-      <span style='color: #999999; font-size: small' class='pull-right'><em>2013-01-23</em></span>
+<%= render 'shared/dashboard_header' %>
+
+<div class="container" style="background-color: #f8f8f8; margin-top: 25px; border: 1px #e7e7e7 solid;">
+  <div class="row-fluid">
+    <div class="col-md-12">
+      <div class="header" style='margin-top: 20px'>
+        <ul class="nav nav-pills pull-right">
+          <li class="active"> <%= link_to 'Write New Blog Post', new_blog_post_path %> </li>
+        </ul>
+        <h3> Manage Blog Posts </h3>
+      </div>
     </div>
   </div>
-  <div class='row-fluid'>
-    <div class='col-lg-12'>
-      <p>
-        <%= post.body.html_safe %>
-      </p>
+  <div class="row-fluid">
+    <div class="col-md-12">
+      <table class='table table-hover'>
+        <tr>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Created</th>
+          <th>Edited</th>
+          <th>Options</th>
+        </tr>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= link_to post.title, blog_post_path(post) %></td>
+            <td><%= post.status %></td>
+            <td><%= post.created_at %></td>
+            <td><%= post.updated_at %></td>
+            <td>
+              <%= edit_button(post) %>
+              <%= delete_button(post) %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
     </div>
   </div>
-  <div class='row-fluid'>
-    <div class='col-lg-12'>
-      <br />
-    </div>
-  </div>
-  <% end %>
 </div>

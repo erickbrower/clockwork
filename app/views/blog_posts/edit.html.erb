@@ -1,2 +1,12 @@
-<h1>BlogPosts#edit</h1>
-<p>Find me in app/views/blog_posts/edit.html.erb</p>
+<%= render 'shared/dashboard_header' %>
+
+<div class="container" style="background-color: #f8f8f8; margin-top: 25px; border: 1px #e7e7e7 solid;">
+  <div class="row-fluid">
+    <div class="col-md-12">
+      <div class="header" style="margin-top: 20px">
+        <h3> Edit Post </h3>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'form', locals: { post: @post } %>
+</div>

@@ -1,18 +1,12 @@
-<h2> New Post </h2>
-<%= form_for @post  do |f| %>
+<%= render 'shared/dashboard_header' %>
+
+<div class="container" style="background-color: #f8f8f8; margin-top: 25px; border: 1px #e7e7e7 solid;">
   <div class="row-fluid">
-    <div class="form-group">
-      <%= f.text_field :title, { placeholder: 'Title', class: 'form-control' } %>
+    <div class="col-md-12">
+      <div class="header" style="margin-top: 20px">
+        <h3> New Post </h3>
+      </div>
     </div>
   </div>
-  <div class="row-fluid">
-    <div class="form-group">
-      <%= f.text_area :body, { placeholder: 'Write something!', class: 'form-control', rows: '15' } %>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <div class="form-group">
-      <%= f.submit 'Post', { class: 'btn btn-primary form-control' } %>
-    </div>
-  </div>
-<% end %>
+  <%= render partial: 'form', locals: { post: @post } %>
+</div>

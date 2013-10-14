@@ -6,16 +6,16 @@ class BlogPost < ActiveRecord::Base
 
   scope :by_published, -> { where(status: :published) }
 
-  before_save :pre_process
+  before_save :process_draft
 
-  def pre_process
+  def process_draft
     self.body = Sanitize.clean(self.body)
-    self.body = Kramdown::Document.new(self.body).to_html
+    self.body_html = Maruku.new(self.body).to_html
     self.status = :draft
   end
 
   def self.authorizations
-    [:view, :create, :update, :destroy].collect { |a| "#{a}_blog_post".to_sym }
+    [:view, :create, :edit, :update, :destroy].collect { |a| "#{a}_blog_post".to_sym }
   end
 
   def self.allowed(person, blog_post)
