@@ -1,8 +1,5 @@
-class BlogPostsController < ApplicationController
-  respond_to :html
-
-  before_filter :authenticate_person!, except: [:index, :show]
-  before_filter :add_abilities
+class API::BlogPostsController < ApplicationController
+  respond_to :json, :xml
 
   def index
     @posts = BlogPost.all
@@ -49,19 +46,5 @@ class BlogPostsController < ApplicationController
     head(401) and return unless can?(current_person, :destroy_blog_post, @post)
     @post.delete
     respond_with @post
-  end
-
-  def manage
-    @posts = BlogPost.all
-  end
-
-  protected
-  def add_abilities
-    abilities << BlogPost
-  end
-
-  private
-  def post_params
-    params.require(:blog_post).permit(:title, :body, :status)
   end
 end
