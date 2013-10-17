@@ -1,3 +1,41 @@
 // Place all the styles related to the landing_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.container {
+
+  width: 60%;
+
+  #sidebar {
+    min-height: 500px;
+
+    div.jumbotron {
+      margin: 0px;
+      padding: 0px;
+
+      h1 {
+        font-size: 49px;
+        color: #428bca;
+        padding-top: 0px;
+        margin-top: 0px;
+      }
+
+      p.lead {
+        display: block;
+        font-size: 18px; 
+        line-height: 1.2;
+      }
+    }
+  }
+
+  #content {
+    min-height: 500px;
+    background-color: #f8f8f8; 
+    border: 1px #e7e7e7 solid;
+
+    div.page-header {
+      margin-top: 20px;
+    }
+  }
+
+}
