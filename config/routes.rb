@@ -1,7 +1,9 @@
 Clockwork::Application.routes.draw do
   root 'landing_pages#index'
 
-  devise_for :people
+  devise_for :people, path: 'auth'
+
+  resources :people
 
   resources :blog_posts do
     member do

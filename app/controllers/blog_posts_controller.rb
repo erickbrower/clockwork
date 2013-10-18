@@ -83,8 +83,7 @@ class BlogPostsController < ApplicationController
   end
 
   def set_layout
-    the_layout = 'application'
-    the_layout = 'admin_panel' if ['index', 'new', 'edit'].include? action_name
+    the_layout = 'admin_panel'
     the_layout = 'blog' if action_name == 'show'
     the_layout
   end

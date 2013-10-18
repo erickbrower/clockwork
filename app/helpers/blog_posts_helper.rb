@@ -13,4 +13,11 @@ module BlogPostsHelper
 
   end
 
+  def status_label(post)
+    case post.status.to_sym
+    when :published then "<span class='label label-success'>#{post.status.to_s.humanize}</span>".html_safe
+    when :draft then "<span class='label label-warning'>#{post.status.to_s.humanize}</span>".html_safe
+    when :raw then "<span class='label label-default'>#{post.status.to_s.humanize}</span>".html_safe
+    end
+  end
 end

@@ -10,8 +10,19 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+        <% if request.url.include?(blog_posts_path) %>
         <li class='active'>
+        <% else %>
+        <li>
+        <% end %>
           <%= link_to 'Blog Posts', blog_posts_path %>
+        </li>
+        <% if request.url.include?(people_path) %>
+        <li class='active'>
+        <% else %>
+        <li>
+        <% end %>
+          <%= link_to 'People', people_path %>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

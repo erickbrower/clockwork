@@ -11,6 +11,8 @@ class BlogPost < ActiveRecord::Base
 
   before_save :process_body
 
+  STATUSES = [:published, :draft, :raw]
+
   def published?
     return false if status.nil?
     status.to_sym == :published

@@ -2,8 +2,8 @@
   <div class="col-md-12">
     <div class="header" style='padding-left: 0px; padding-right: 0px;'>
       <ul class="nav nav-pills pull-right">
-        <li class="active"> <%= link_to 'Write a New Post', new_blog_post_path %> </li>
-        <li> <%= link_to 'View Blog', root_path %> </li>
+        <li class="active"> <%= link_to '<span class="glyphicon glyphicon-plus"></span> New Post'.html_safe, new_blog_post_path %> </li>
+        <li> <%= link_to '<span class="glyphicon glyphicon-new-window"></span> View Blog'.html_safe, root_path %> </li>
       </ul>
       <h3> Manage Blog Posts </h3>
     </div>
@@ -24,8 +24,8 @@
       <tbody style="font-size: 14px;">
       <% @posts.each do |post| %>
         <tr>
-        <td><%= link_to post.title, blog_post_path(post) %></td>
-        <td><%= post.status.to_s.humanize %></td>
+        <td><strong><%= link_to post.title, blog_post_path(post) %></strong></td>
+        <td><%= status_label(post) %></td>
         <td><%= post.created_at %></td>
         <td><%= post.updated_at %></td>
         <td>

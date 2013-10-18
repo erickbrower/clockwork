@@ -23,11 +23,11 @@
               <%= link_to "Dashboard <span class='pull-right glyphicon glyphicon-wrench'></span>".html_safe, blog_posts_path %>
               </li>
               <li>
-              <%= link_to "Logout <span class='pull-right glyphicon glyphicon-user'></span>".html_safe, destroy_person_session_path, method: :delete %>
+              <%= link_to "Logout <span class='pull-right glyphicon glyphicon-log-out'></span>".html_safe, destroy_person_session_path, method: :delete %>
               </li>
               <% else %>
                 <li>
-                <%= link_to "Log In <span class='pull-right glyphicon glyphicon-user'></span>".html_safe, new_person_session_path  %>
+                <%= link_to "Log In <span class='pull-right glyphicon glyphicon-log-in'></span>".html_safe, new_person_session_path  %>
                 </li>
               <% end %>
             </ul>

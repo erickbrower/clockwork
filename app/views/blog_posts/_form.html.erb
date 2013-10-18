@@ -1,15 +1,30 @@
 <%= form_for post  do |f| %>
-  <div class="row-fluid">
+  <% if post.errors.any? %>
+    <div class="alert alert-danger alert-dismissable">
+      <h5><strong>Oh noes!</strong> Errors prevented this blog post from being saved!</h5>
+      <dl class="dl-horizontal">
+        <% post.errors.messages.each do |field, errors| %>
+          <dt><%= field.to_s.humanize %></dt>
+          <dd><%= errors.first.to_s.humanize %></dd>
+        <% end %>
+      </dl>
+    </div>
+  <% end %>
+  <div class="row">
+    <% if post.errors.any? && post.errors.messages.keys.include?(:title) %>
+    <div class="form-group has-error">
+    <% else %>
     <div class="form-group">
+    <% end %>
       <%= f.text_field :title, { placeholder: 'Title', class: 'form-control' } %>
     </div>
   </div>
-  <div class="row-fluid">
+  <div class="row">
     <div class="form-group">
       <%= f.text_area :body, { placeholder: 'Write something!', class: 'form-control', rows: '15' } %>
     </div>
   </div>
-  <div class="row-fluid">
+  <div class="row">
     <div class="form-group">
       <%= f.submit 'Save', { class: 'btn btn-primary form-control' } %>
     </div>

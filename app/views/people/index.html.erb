@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="header" style='padding-left: 0px; padding-right: 0px;'>
+      <ul class="nav nav-pills pull-right">
+        <li class="active"> <%= link_to 'Add a New Person', new_person_path %> </li>
+      </ul>
+      <h3> Manage People </h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class='table table-hover table-condensed'>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Created</th>
+          <th>Updated</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody style="font-size: 14px;">
+      <% @people.each do |person| %>
+        <tr>
+        <td><%= link_to person.email, person_path(person) %></td>
+        <td><%= person.created_at %></td>
+        <td><%= person.updated_at %></td>
+        <td>
+          <%= edit_button(person) %>
+          <%= delete_button(person) %>
+        </td>
+      </tr>
+    <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

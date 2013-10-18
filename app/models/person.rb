@@ -8,6 +8,10 @@ class Person < ActiveRecord::Base
   has_many :role_assignments
   has_many :roles, through: :role_assignments
 
+  accepts_nested_attributes_for :roles
+
+  validates :email, presence: true
+
   def has_role?(role_title)
     roles.select { |r| r.title == role_title.to_s }.any?
   end
