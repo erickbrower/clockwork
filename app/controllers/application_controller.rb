@@ -1,20 +1,14 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+  include Authorizer
+
   protect_from_forgery with: :exception
   before_filter :set_globals
 
   def set_globals
     @app_title = 'Clockwork'
+    @page_id = "#{controller_name.dasherize}-#{action_name.dasherize}"
   end
 
   helper_method :abilities, :can?
 
-  def abilities
-    @abilites ||= Six.new
-  end
-
-  def can?(object, action, subject)
-    abilities.allowed?(object, action, subject)
-  end
 end

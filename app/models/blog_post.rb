@@ -1,13 +1,17 @@
 class BlogPost < ActiveRecord::Base
   include Authorizable
 
-  belongs_to :author, class_name: 'Person'
+  belongs_to :author, foreign_key: 'person_id', class_name: 'Person'
 
   validates :title, presence: true
 
   scope :by_published, -> { where(status: :published) }
 
   before_save :process_draft
+
+  def published?
+    status.to_sym == :published
+  end
 
   def process_draft
     self.body_html = Maruku.new(self.body).to_html

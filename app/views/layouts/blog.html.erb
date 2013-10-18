@@ -1,0 +1,17 @@
+<%= content_for :content do %>
+<div class="container">
+  <div class="row">
+    <div id="content" class="col-md-9">
+      <%= yield %>
+    </div>
+    <div id="sidebar" class="col-md-3">
+      <div class="jumbotron">
+        <h1> erick blogs </h1>
+        <p class="lead">web dev is pretty ok.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<%= render template: 'layouts/application' %>

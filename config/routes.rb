@@ -3,7 +3,11 @@ Clockwork::Application.routes.draw do
 
   devise_for :people
 
-  resources :blog_posts
+  resources :blog_posts do
+    member do
+      get 'publish'
+    end
+  end
 
   namespace :api do
     resources :blog_posts

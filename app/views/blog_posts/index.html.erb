@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="header" style='margin-top: 20px'>
       <ul class="nav nav-pills pull-right">
-        <li class="active"> <%= link_to 'Write New Blog Post', new_blog_post_path %> </li>
+        <li class="active"> <%= link_to 'Write a New Post', new_blog_post_path %> </li>
       </ul>
       <h3> Manage Blog Posts </h3>
     </div>
@@ -10,14 +10,17 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <table class='table table-hover'>
-      <tr>
-        <th>Title</th>
-        <th>Status</th>
-        <th>Created</th>
-        <th>Edited</th>
-        <th>Options</th>
-      </tr>
+    <table class='table table-hover table-condensed'>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Created</th>
+          <th>Edited</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody style="font-size: 14px;">
       <% @posts.each do |post| %>
         <tr>
         <td><%= link_to post.title, blog_post_path(post) %></td>
@@ -30,6 +33,7 @@
         </td>
       </tr>
     <% end %>
+      </tbody>
     </table>
   </div>
 </div>

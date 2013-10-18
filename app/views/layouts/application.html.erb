@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
   <%= yield :styles %>
 </head>
-<body>
+<body id="<%= @page_id %>">
   <%= content_for?(:content) ? yield(:content) : yield %>
 
   <%= yield :scripts %>
