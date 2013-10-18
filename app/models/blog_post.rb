@@ -12,6 +12,7 @@ class BlogPost < ActiveRecord::Base
   before_save :process_body
 
   def published?
+    return false if status.nil?
     status.to_sym == :published
   end
 
@@ -23,6 +24,13 @@ class BlogPost < ActiveRecord::Base
   def publish
     update_attribute :status, :published
   end
+  def unpublish
+    update_attribute :status, :draft
+  end
+
+  def authored_by?(person)
+    author.id == person.id
+  end
 
   def self.allowed(person, blog_post)
     rules = []
@@ -31,10 +39,10 @@ class BlogPost < ActiveRecord::Base
     rules += all_authorizations  if person.has_role? :administrator
     rules << :create_blog_post if person.has_role? :blog_author
     if blog_post.author
-      rules << :update_blog_post if blog_post.author.id == person.id
-      rules << :destroy_blog_post if blog_post.author.id == person.id
+      rules << :update_blog_post if blog_post.authored_by? person
+      rules << :destroy_blog_post if blog_post.authored_by? person
     end
-    rules << :view_blog_post unless rules.include? :view_blog_post 
+    rules << :view_blog_post
     rules.uniq
   end
   

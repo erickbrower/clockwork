@@ -1,13 +1,38 @@
 <%= content_for :content do %>
-<div class="container">
+  <div class="container">
   <div class="row">
     <div id="content" class="col-md-9">
       <%= yield %>
     </div>
     <div id="sidebar" class="col-md-3">
-      <div class="jumbotron">
-        <h1> erick blogs </h1>
-        <p class="lead">web dev is pretty ok.</p>
+      <div class="sticky-sidebar" data-spy="affix" data-offset-top="0">
+        <div class="row title-header">
+          <div class="col-xs-12 jumbotron">
+            <h1> erick blogs </h1>
+            <p class="lead">web dev is pretty ok.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 info-panel">
+            <ul class="nav nav-pills nav-stacked">
+              <% if current_person %>
+              <li class="active">
+              <a href="#"> Home <span class="pull-right glyphicon glyphicon-th-list"></span></a>
+              </li>
+              <li>
+              <%= link_to "Dashboard <span class='pull-right glyphicon glyphicon-wrench'></span>".html_safe, blog_posts_path %>
+              </li>
+              <li>
+              <%= link_to "Logout <span class='pull-right glyphicon glyphicon-user'></span>".html_safe, destroy_person_session_path, method: :delete %>
+              </li>
+              <% else %>
+                <li>
+                <%= link_to "Log In <span class='pull-right glyphicon glyphicon-user'></span>".html_safe, new_person_session_path  %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

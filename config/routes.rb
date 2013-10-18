@@ -6,6 +6,7 @@ Clockwork::Application.routes.draw do
   resources :blog_posts do
     member do
       get 'publish'
+      get 'unpublish'
     end
   end
 

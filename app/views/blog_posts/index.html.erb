@@ -1,8 +1,9 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="header" style='margin-top: 20px'>
+    <div class="header" style='padding-left: 0px; padding-right: 0px;'>
       <ul class="nav nav-pills pull-right">
         <li class="active"> <%= link_to 'Write a New Post', new_blog_post_path %> </li>
+        <li> <%= link_to 'View Blog', root_path %> </li>
       </ul>
       <h3> Manage Blog Posts </h3>
     </div>
@@ -24,7 +25,7 @@
       <% @posts.each do |post| %>
         <tr>
         <td><%= link_to post.title, blog_post_path(post) %></td>
-        <td><%= post.status %></td>
+        <td><%= post.status.to_s.humanize %></td>
         <td><%= post.created_at %></td>
         <td><%= post.updated_at %></td>
         <td>

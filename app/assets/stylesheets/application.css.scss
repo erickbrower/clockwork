@@ -13,3 +13,14 @@
  */
 
 @import 'twitter/bootstrap';
+
+span.glyphicon {
+  top: 0px;
+}
+
+div.admin-content {
+  background-color: #f8f8f8;
+  margin-top: 25px;
+  padding-top: 25px;
+  border: 1px #e7e7e7 solid;
+}

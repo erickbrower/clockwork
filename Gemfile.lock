@@ -163,6 +163,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass-rails
   capybara
+  coderay
   coffee-rails (~> 4.0.0)
   devise
   jbuilder (~> 1.2)

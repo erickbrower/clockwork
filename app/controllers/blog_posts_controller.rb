@@ -61,6 +61,13 @@ class BlogPostsController < ApplicationController
     redirect_to :back
   end
 
+  def unpublish
+    @post = BlogPost.find params[:id]
+    head(401) and return unless can?(current_person, :update_blog_post, @post)
+    @post.unpublish
+    redirect_to :back
+  end
+
   def manage
     @posts = BlogPost.all
   end

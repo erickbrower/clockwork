@@ -1,6 +1,7 @@
-<div class="row-fluid">
+<div class="row">
   <div class="col-md-12">
     <div class="header" style="margin-top: 20px">
+      <%= render partial: 'blog_posts/admin_button', locals: { blog_post: @post, btn_group_class: 'pull-right' } %>
       <h3> New Post </h3>
     </div>
   </div>

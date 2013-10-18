@@ -1,3 +1,85 @@
 // Place all the styles related to the blog_posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#sidebar {
+  min-height: 600px;
+
+  div.sticky-sidebar {
+    div.title-header {
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  }
+
+  div.info-panel {
+    padding: 15px;
+    background-color: #f8f8f8; 
+    border: 1px #e7e7e7 solid;
+  }
+
+  div.jumbotron {
+    margin: 0px;
+    padding: 0px;
+
+    h1 {
+      font-size: 49px;
+      color: #428bca;
+      padding-top: 0px;
+      margin-top: 0px;
+    }
+
+    p.lead {
+      display: block;
+      font-size: 18px; 
+      line-height: 1.2;
+    }
+  }
+}
+
+#content {
+  min-height: 500px;
+  background-color: #f8f8f8; 
+  border: 1px #e7e7e7 solid;
+  padding: 20px;
+}
+
+div.blog-post-partial {
+
+  div.row {
+
+    div.blog-post-body {
+      margin-top: 20px;
+    }
+
+    span.author-signature {
+      color: #777777;
+    }
+
+    div.header {
+      padding-left: 0px;
+      padding-right: 0px;
+
+      h3 {
+        margin-top: 20px;
+        padding-bottom: 0px;
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+div.blog-post-admin-button-partial {
+
+  width: 120px;
+
+  button.btn {
+    height: 34px;
+
+    a {
+      color: #ffffff;
+    }
+  }
+}
+

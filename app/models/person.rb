@@ -12,6 +12,10 @@ class Person < ActiveRecord::Base
     roles.select { |r| r.title == role_title.to_s }.any?
   end
 
+  def administrator?
+    has_role? :administrator
+  end
+
   def self.allowed(subject_person, person)
     rules = []
     return rules unless person.instance_of? Person

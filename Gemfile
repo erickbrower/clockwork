@@ -9,6 +9,7 @@ gem 'bootstrap-sass-rails'
 gem 'maruku'
 gem 'six'
 gem 'sanitize'
+gem 'coderay'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
