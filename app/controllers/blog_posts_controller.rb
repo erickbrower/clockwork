@@ -4,6 +4,8 @@ class BlogPostsController < ApplicationController
   before_filter :authenticate_person!, except: [:index, :show]
   before_filter :add_abilities
 
+  layout :set_layout
+
   def index
     @posts = BlogPost.all
     head(401) and return unless can?(current_person, :view_blog_post, @posts.first)
@@ -63,5 +65,13 @@ class BlogPostsController < ApplicationController
   private
   def post_params
     params.require(:blog_post).permit(:title, :body, :status)
+  end
+
+  def set_layout
+    case action_name
+    when 'index' then 'admin_panel'
+    when 'new' then 'admin_panel'
+    else 'application'
+    end
   end
 end

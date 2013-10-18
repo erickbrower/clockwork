@@ -22,13 +22,13 @@ class API::BlogPostsController < ApplicationController
 
   def edit
     @post = BlogPost.find params[:id]
-    head(401) and return unless can?(current_person, :edit_blog_post, @post)
+    head(401) and return unless can?(current_person, :update_blog_post, @post)
     respond_with @post
   end
 
   def update
     @post = BlogPost.find params[:id]
-    head(401) and return unless can?(current_person, :edit_blog_post, @post)
+    head(401) and return unless can?(current_person, :update_blog_post, @post)
     if @post.update_attributes post_params
       flash[:notice] = 'Blog Post was updated successfully!'
     end
