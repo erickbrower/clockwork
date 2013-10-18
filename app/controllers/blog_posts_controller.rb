@@ -76,12 +76,9 @@ class BlogPostsController < ApplicationController
   end
 
   def set_layout
-    case action_name
-    when 'index' then 'admin_panel'
-    when 'new' then 'admin_panel'
-    when 'edit' then 'admin_panel'
-    when 'show' then 'blog'
-    else 'application'
-    end
+    the_layout = 'application'
+    the_layout = 'admin_panel' if ['index', 'new', 'edit'].include? action_name
+    the_layout = 'blog' if action_name == 'show'
+    the_layout
   end
 end

@@ -4,7 +4,7 @@
       <div class="btn-group pull-right">
         <% if blog_post.published? %>
           <% btn_class = 'btn-warning' %>
-          <% btn_link = link_to 'Unpublish', '#' %>
+          <% btn_link = link_to 'Unpublish', '#', style: 'color: #ffffff;' %>
         <% else %>
           <% btn_class = 'btn-success' %>
           <% btn_link = link_to 'Publish', publish_blog_post_path(blog_post), style: 'color: #ffffff;' %>

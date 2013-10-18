@@ -7,15 +7,16 @@ class BlogPost < ActiveRecord::Base
 
   scope :by_published, -> { where(status: :published) }
 
-  before_save :process_draft
+  before_create :process_draft
+
+  before_save :process_body
 
   def published?
     status.to_sym == :published
   end
 
   def process_draft
-    self.body_html = Maruku.new(self.body).to_html
-    self.body = Sanitize.clean(self.body, Sanitize::Config::RELAXED)
+    process_body
     self.status = :draft
   end
 
@@ -34,6 +35,16 @@ class BlogPost < ActiveRecord::Base
       rules << :destroy_blog_post if blog_post.author.id == person.id
     end
     rules << :view_blog_post unless rules.include? :view_blog_post 
-    rules
+    rules.uniq
   end
+  
+  private
+  def process_body
+    if body_changed?
+      self.body_html = Maruku.new(self.body).to_html
+      self.body_html = Sanitize.clean(self.body_html, Sanitize::Config::RELAXED)
+      self.body = Sanitize.clean(self.body, Sanitize::Config::RELAXED)
+    end
+  end
+
 end
