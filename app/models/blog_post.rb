@@ -11,6 +11,8 @@ class BlogPost < ActiveRecord::Base
 
   before_save :process_body
 
+  acts_as_taggable
+
   STATUSES = [:published, :draft, :raw]
 
   def published?

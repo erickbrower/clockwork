@@ -1,4 +1,8 @@
 class LandingPagesController < ApplicationController
+  include Authorizer
+
+  before_filter :add_abilities
+
   respond_to :html
 
   layout :set_layout
@@ -15,4 +19,7 @@ class LandingPagesController < ApplicationController
     end
   end
 
+  def add_abilities
+    abilities << BlogPost
+  end
 end

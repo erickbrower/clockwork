@@ -20,4 +20,12 @@ module BlogPostsHelper
     when :raw then "<span class='label label-default'>#{post.status.to_s.humanize}</span>".html_safe
     end
   end
+
+  def render_blog_post_tags(post)
+    tags = ''
+    post.tags.each do |tag|
+      tags += "<span class='label label-info'>#{tag}</span> "
+    end
+    tags.html_safe
+  end
 end

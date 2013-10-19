@@ -79,7 +79,7 @@ class BlogPostsController < ApplicationController
 
   private
   def post_params
-    params.require(:blog_post).permit(:title, :body, :status)
+    params.require(:blog_post).permit(:title, :body, :status, :tag_list)
   end
 
   def set_layout

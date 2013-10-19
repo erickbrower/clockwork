@@ -1,4 +1,4 @@
-<% if current_person && (current_person.administrator? || blog_post.authored_by?(current_person)) %>
+<% if can?(current_person, :update_blog_post, blog_post) %>
   <% btn_group_class ||= "pull-right" %>
 <% if blog_post.published? %>
   <% btn_class = 'btn-warning' %>

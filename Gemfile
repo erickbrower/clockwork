@@ -10,6 +10,7 @@ gem 'maruku'
 gem 'six'
 gem 'sanitize'
 gem 'coderay'
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
