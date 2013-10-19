@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="header">
+      <span class="pull-right"><%= gravatar_for @person, { size: 75 } %></span>
       <h3> Edit Person </h3>
     </div>
   </div>
@@ -11,3 +12,7 @@
   </div>
 </div>
 
+<%= content_for :head do %>
+<%= stylesheet_link_tag "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" %>
+<%= javascript_include_tag "http://code.jquery.com/ui/1.10.3/jquery-ui.js" %>
+<% end %>

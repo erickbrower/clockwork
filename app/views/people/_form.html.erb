@@ -1,69 +1,107 @@
 <%= form_for person do |f| %>
-  <% if person.errors.any? %>
-    <div class="alert alert-danger alert-dismissable">
-      <h5><strong>Oh noes!</strong> Errors prevented this person from being saved!</h5>
-      <dl class="dl-horizontal">
-        <% person.errors.messages.each do |field, errors| %>
-          <dt><%= field.to_s.humanize %></dt>
-          <dd><%= errors.first.to_s.humanize %></dd>
-        <% end %>
-      </dl>
-    </div>
-  <% end %>
+<%= render partial: 'shared/form_errors', locals: { item: person } %>
 <div class="row">
   <div class="col-md-6">
+    <legend> Basic Info </legend>
     <div class="row">
-      <div class="col-md-12">
-        <legend> Basic Info </legend>
-      </div>
-    </div>
-    <div class="row">
-      <% if person.errors.any? && person.errors.messages.keys.include?(:email) %>
-      <div class="form-group col-md-12 has-error">
+      <% if field_has_errors?(:email, person.errors) %>
+        <div class="form-group col-md-12 has-error">
       <% else %>
-      <div class="form-group col-md-12">
-      <% end %>
-        <%= f.email_field :email, { placeholder: 'Email', class: 'form-control' } %>
-      </div>
+          <div class="form-group col-md-12">
+       <% end %>
+          <%= f.email_field :email, { placeholder: 'Email', class: 'form-control' } %>
+        </div>
     </div>
-    <div class="row">
-      <% if person.errors.any? && person.errors.messages.keys.include?(:password) %>
-      <div class="form-group col-md-6 has-error">
-      <% else %>
-      <div class="form-group col-md-6">
-      <% end %>
-        <%= f.password_field :password, { placeholder: 'Password', class: 'form-control' } %>
-      </div>
-      <% if person.errors.any? && person.errors.messages.keys.include?(:password) %>
-      <div class="form-group col-md-6 has-error">
-      <% else %>
-      <div class="form-group col-md-6">
-      <% end %>
-        <%= f.password_field :password_confirmation, { placeholder: 'Password Confirmation', class: 'form-control' } %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-md-12">
-        <%= f.submit 'Save', { class: 'btn btn-primary form-control' } %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="row">
-      <div class="col-md-12">
-        <legend> Roles </legend>
-      </div>
-    </div>
-    <% Role.all.each do |role| %>
       <div class="row">
-      <div class="col-md-12">
-        <div class="checkbox">
-          <% chk_box = check_box_tag :role_ids, role.id, person.roles.include?(role), name: 'person[role_ids][]' %>
-          <%= label_tag :role_ids, "#{chk_box} #{role.title.humanize}".html_safe %>
+        <% if field_has_errors?(:password, person.errors) %>
+          <div class="form-group col-md-6 has-error">
+        <% else %>
+            <div class="form-group col-md-6">
+          <% end %>
+            <%= f.password_field :password, { placeholder: 'Password', class: 'form-control' } %>
+          </div>
+          <% if field_has_errors?(:password, person.errors) %>
+            <div class="form-group col-md-6 has-error">
+          <% else %>
+              <div class="form-group col-md-6">
+            <% end %>
+              <%= f.password_field :password_confirmation, { placeholder: 'Password Confirmation', class: 'form-control' } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <legend> Roles </legend>
+          </div>
+          <% Role.all.each do |role| %>
+            <div class="row">
+            <div class="col-md-12">
+              <div class="checkbox">
+                <% chk_box = check_box_tag :role_ids, role.id, person.roles.include?(role), name: 'person[role_ids][]' %>
+                <%= label_tag :role_ids, "#{chk_box} #{role.title.humanize}".html_safe %>
+              </div>
+            </div>
+          </div>
+        <% end %>
         </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-md-12">
+          <legend> Profile </legend>
+        </div>
+      </div>
+      <%= f.fields_for :profile do |pf| %>
+      <div class="row">
+        <% if field_has_errors?(:first_name, person.profile.errors) %>
+        <div class="col-md-6 form-group has-error">
+        <% else %>
+        <div class="col-md-6 form-group">
+        <% end %>
+          <%= pf.text_field :first_name, { placeholder: 'First Name', class: 'form-control' } %>
+        </div>
+        <% if field_has_errors?(:last_name, person.profile.errors) %>
+        <div class="col-md-6 form-group has-error">
+        <% else %>
+        <div class="col-md-6 form-group">
+        <% end %>
+          <%= pf.text_field :last_name, { placeholder: 'Last Name', class: 'form-control' } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row form-group">
+            <div class="input-group">
+              <span class="input-group-addon">@</span>
+              <%= pf.text_field :twitter_handle, { placeholder: 'Twitter Handle', class: 'form-control' } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              <%= pf.text_field :birthdate, { placeholder: 'Birthdate', class: 'form-control' } %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <%= pf.text_area :bio, { placeholder: 'Your bio: Tell everyone something about yourself!', rows: '10', class: 'form-control' } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <br />
+          <%= f.submit 'Save', { class: 'btn btn-primary form-control' } %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
-  </div>
-</div>
-<% end %>
+<script>
+$('#person_profile_attributes_birthdate').datepicker({
+dateFormat: 'yy-mm-dd',
+changeMonth: true,
+changeYear: true
+    });
+</script>

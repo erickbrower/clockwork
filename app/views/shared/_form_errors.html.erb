@@ -1,0 +1,11 @@
+<% if item.errors.any? %>
+<div class="alert alert-danger alert-dismissable">
+  <h5><strong>Oh noes!</strong> Errors prevented this <%= "#{item.class.name.titleize}" %> from being saved!</h5>
+  <dl class="dl-horizontal">
+    <% item.errors.messages.each do |field, errors| %>
+    <dt><%= field.to_s.gsub(/\./, ' ').titleize %></dt>
+    <dd><%= errors.first.to_s.humanize %></dd>
+    <% end %>
+  </dl>
+</div>
+<% end %>

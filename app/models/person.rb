@@ -8,7 +8,10 @@ class Person < ActiveRecord::Base
   has_many :role_assignments
   has_many :roles, through: :role_assignments
 
+  has_one :profile
+
   accepts_nested_attributes_for :roles
+  accepts_nested_attributes_for :profile
 
   validates :email, presence: true
 
@@ -20,12 +23,11 @@ class Person < ActiveRecord::Base
     has_role? :administrator
   end
 
-  def self.allowed(subject_person, person)
+  def self.allowed(person, target_person)
     rules = []
     return rules unless person.instance_of? Person
-    return rules unless subject_person.instance_of? Person
+    return rules unless target_person.instance_of? Person
     rules << all_authorizations if person.has_role? :administrator
-    rules
+    rules.uniq
   end
-
 end

@@ -18,6 +18,13 @@ span.glyphicon {
   top: 0px;
 }
 
+table.table-condensed {
+  span.label {
+    position: relative;
+    top: 5px;
+  }
+}
+
 div.admin-content {
   background-color: #f8f8f8;
   margin-top: 25px;

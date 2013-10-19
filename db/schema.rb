@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131013234421) do
+ActiveRecord::Schema.define(version: 20131019004656) do
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(version: 20131013234421) do
   add_index "people", ["email"], name: "index_people_on_email", unique: true
   add_index "people", ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true
   add_index "people", ["unlock_token"], name: "index_people_on_unlock_token", unique: true
+
+  create_table "profiles", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "twitter_handle"
+    t.text     "bio"
+    t.date     "birthdate"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "role_assignments", force: true do |t|
     t.integer  "person_id"

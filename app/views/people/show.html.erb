@@ -1,7 +1,30 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="header">
-      <%= @person.email %>
+    <div class="header" >
+      <h2><%= "#{@person.profile.last_name}, #{@person.profile.first_name}" %></h2>
+
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <h4> Account Info </h4>
+    <dl class="dl-horizontal">
+      <% @person.attributes.each do |attr, val| %>
+        <% next if attr == "encrypted_password" %>
+        <dt><%= attr.to_s.titleize %></dt>
+        <dd><%= val %>
+      <% end %>
+    </dl>
+    <h4> Profile </h4>
+    <dl class="dl-horizontal">
+      <% @person.profile.attributes.each do |attr, val| %>
+        <dt><%= attr.to_s.titleize %></dt>
+        <dd><%= val %>
+      <% end %>
+    </dl>
+  </div>
+  <div class="col-md-4">
+    <%= gravatar_for(@person, { size: 200 }) %>
   </div>
 </div>
