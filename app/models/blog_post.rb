@@ -40,9 +40,8 @@ class BlogPost < ActiveRecord::Base
     return rules unless blog_post.instance_of? BlogPost
     rules += all_authorizations  if person.has_role? :administrator
     rules << :create_blog_post if person.has_role? :blog_author
-    if blog_post.author
-      rules << :update_blog_post if blog_post.authored_by? person
-      rules << :destroy_blog_post if blog_post.authored_by? person
+    if blog_post.author && blog_post.authored_by?(person)
+      rules += [:update_blog_post, :destroy_blog_post] 
     end
     rules << :view_blog_post
     rules.uniq

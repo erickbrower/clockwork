@@ -35,6 +35,9 @@ class PeopleController < ApplicationController
   end
 
   def destroy
+    @person = Person.find params[:id]
+    @person.delete
+    respond_with @person
   end
 
   private

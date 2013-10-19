@@ -13,6 +13,7 @@
     <table class='table table-hover table-condensed'>
       <thead>
         <tr>
+          <th>Gravatar</th>
           <th>Email</th>
           <th>Created</th>
           <th>Updated</th>
@@ -22,6 +23,7 @@
       <tbody style="font-size: 14px;">
       <% @people.each do |person| %>
         <tr>
+          <td><%= gravatar_for person, { size: 50 } %></td>
         <td><%= link_to person.email, person_path(person) %></td>
         <td><%= person.created_at %></td>
         <td><%= person.updated_at %></td>
