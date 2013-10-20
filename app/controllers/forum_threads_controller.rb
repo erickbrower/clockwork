@@ -1,4 +1,4 @@
-class ForumPostsController < ApplicationController
+class ForumThreadsController < ApplicationController
   respond_to :html
 
   def index

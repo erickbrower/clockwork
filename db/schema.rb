@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131020011842) do
+ActiveRecord::Schema.define(version: 20131020063051) do
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
@@ -36,6 +36,27 @@ ActiveRecord::Schema.define(version: 20131020011842) do
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
   add_index "comments", ["person_id"], name: "index_comments_on_person_id"
+
+  create_table "forum_categories", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forum_posts", force: true do |t|
+    t.text     "body"
+    t.string   "tldr"
+    t.integer  "person_id"
+    t.integer  "forum_thread_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forum_threads", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "people", force: true do |t|
     t.string   "email",                  default: "", null: false
