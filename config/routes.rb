@@ -4,8 +4,9 @@ Clockwork::Application.routes.draw do
   devise_for :people, path: 'auth'
 
   resources :people
-
+  
   resources :blog_posts do
+    resources :comments
     member do
       get 'publish'
       get 'unpublish'

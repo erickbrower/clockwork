@@ -1,0 +1,21 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.comment-partial {
+  margin-bottom: 20px;
+
+  legend {
+    font-size: 18px;
+  }
+  
+  h6 {
+    margin-top: 0px;
+  }
+
+  span.comment-created-at {
+    color: rgba(153, 153, 153, 0.85);
+    font-size: 13px;
+    font-weight: normal;
+  }
+}

@@ -1,7 +1,6 @@
 <div class="row">
   <div class="col-md-12">
     <div class="header">
-      <%= render partial: 'blog_posts/admin_button', locals: { blog_post: @post, btn_group_class: 'pull-right' } %>
       <h3> New Post </h3>
     </div>
   </div>
@@ -12,3 +11,32 @@
   </div>
 </div>
 
+<script>
+var opts = {
+  container: "epiceditor",
+  textarea: "blog-post-body-text",
+  basePath: "epiceditor",
+  clientSideStorage: false,
+  localStorageName: "epiceditor",
+  useNativeFullscreen: true,
+  file: {
+    name: "epiceditor",
+    autoSave: 100
+  },
+  theme: {
+    base: '../../../assets/epic_editor/themes/base/epiceditor.css',
+    preview: '../../../assets/epic_editor/themes/preview/github.css',
+    editor: '../../../assets/epic_editor/themes/editor/epic-light.css'
+  },
+  button: {
+    preview: true,
+    fullscreen: true,
+    bar: "auto"
+  },
+  autogrow: {
+    minHeight: 400
+  },
+  focusOnLoad: false
+};
+var editor = new EpicEditor(opts).load();
+</script>

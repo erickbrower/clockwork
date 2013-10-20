@@ -1,7 +1,8 @@
+<% collapse_comments = true if collapse_comments.nil? %>
 <div class="blog-post-partial">
   <div class="row">
     <div class="col-md-12">
-      <%= render partial: 'blog_posts/admin_button', locals: { blog_post: blog_post, btn_group_class: 'pull-left' } %>
+      <%= render partial: 'blog_posts/admin_button', locals: { blog_post: blog_post, btn_group_class: 'pull-right' } %>
     </div>
   </div>
   <div class="row">
@@ -23,21 +24,60 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-3">
-          <span class="pull-left author-signature">- <em><%= blog_post.author.email %></em></span>
+          <span class="pull-left author-signature">- <%= "#{blog_post.author.profile.first_name} #{blog_post.author.profile.last_name}" %></span>
         </div>
         <div class="col-md-9">
+          <% if blog_post.tags.any? %>
           <div class="pull-right">
-            <span class="label" style="color: #777777; font-size: 14px;">Tags</span><%= render_blog_post_tags(blog_post) %>
-        </div>
+            <span class="label tags">Tags</span><%= render_blog_post_tags(blog_post) %>
+          </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
-      <hr>
+      <br />
+      <br />
     </div>
   </div>
+  <% unless collapse_comments %>
+  <div class="row">
+    <div class="col-md-1">
+       
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-12">
+          <legend><span class="glyphicon glyphicon-user"></span> Comments</legend>
+        </div>
+      </div>
+      <% if blog_post.comments.any? %>
+        <%= render blog_post.comments %>
+      <% else %>
+        <div class="empty-comments"> 
+          There are no comments for this blog post. Be the first!
+        </div>
+        <br /><br />
+      <% end %>
+    </div>
+    <div class="col-md-1">
+       
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">
+       
+    </div>
+    <div class="col-md-10">
+      <%= render partial: 'comments/form', locals: { commentable: blog_post, comment: blog_post.comments.build } %>
+    </div>
+    <div class="col-md-1">
+       
+    </div>
+  </div>
+<% end %>
   <br />
   <br />
 </div>

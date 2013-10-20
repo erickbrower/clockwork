@@ -2,6 +2,7 @@ class BlogPost < ActiveRecord::Base
   include Authorizable
 
   belongs_to :author, foreign_key: 'person_id', class_name: 'Person'
+  has_many :comments, as: :commentable
 
   validates :title, presence: true
 

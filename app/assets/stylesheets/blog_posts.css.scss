@@ -47,7 +47,14 @@
 
 div.blog-post-partial {
 
+  div.blog-post-admin-button-partial {
+  }
+
   div.row {
+
+    legend {
+      font-size: 18px;
+    }
 
     span.blog-post-date {
       position: relative;
@@ -60,7 +67,18 @@ div.blog-post-partial {
     }
 
     span.author-signature {
-      color: #777777;
+      color: rgba(153, 153, 153, 0.85);
+    }
+
+    div.empty-comments {
+      color: rgba(153, 153, 153, 0.85);
+      width: 100%;
+      text-align: center;
+    }
+
+    span.tags {
+      color: rgba(153, 153, 153, 0.85);
+      font-size: 14px;
     }
 
     div.header {
