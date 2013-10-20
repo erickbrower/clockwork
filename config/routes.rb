@@ -1,4 +1,10 @@
 Clockwork::Application.routes.draw do
+  resources :forum_categories
+
+  resources :forum_topics
+
+  resources :forum_posts
+
   root 'landing_pages#index'
 
   devise_for :people, path: 'auth'
