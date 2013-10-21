@@ -1,3 +1,47 @@
 // Place all the styles related to the forum_threads controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#forum-threads-show {
+  div.container {
+    min-height: 500px;
+    background-color: #f8f8f8;
+    border: 1px #e7e7e7 solid;
+    padding: 15px 20px 20px 20px;
+  }
+}
+
+div.forum-thread-partial {
+
+  div.forum-thread-conversation {
+    margin-top: 20px;
+  }
+
+  div.forum-thread-collapsed-min {
+
+    margin-top: 10px;
+
+    div.content {
+      background-color: #ffffff;
+      border: 1px #e5e5e5 solid; 
+      border-radius: 5px;
+      margin-left: 0px;
+      margin-right: 0px;
+
+      div.main {
+        border-right: 1px #e5e5e5 solid;
+      }
+
+      h6 {
+        line-height: 23px;
+        font-size: 13px;
+      }
+
+      a.btn {
+        margin: 5px;
+        width: 80px;
+      }
+
+    }
+  }
+}

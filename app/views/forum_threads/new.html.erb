@@ -1,0 +1,9 @@
+<%= form_for @forum_thread do |f| %>
+  <%= f.text_field :title %>
+  <%= f.fields_for :forum_posts do |pf| %>
+    <%= pf.text_area :body %>
+    <%= pf.text_field :tldr %>
+  <% end %>
+  <%= f.text_field :tag_list, { placeholder: 'tags' } %>
+  <%= f.submit %>
+<% end %>

@@ -1,6 +1,8 @@
 Clockwork::Application.routes.draw do
   root 'landing_pages#index'
 
+  get 'forum' => 'landing_pages#forum'
+
   resources :forum_threads
 
   resources :forum_posts

@@ -1,0 +1,8 @@
+<div class="forum-thread-partial">
+  <% view ||= :collapsed_min %>
+  <% if view == :collapsed_min %>
+    <%= render partial: 'forum_threads/forum_thread_collapsed_min', locals: { forum_thread: forum_thread } %>
+  <% elsif view == :conversation %>
+    <%= render partial: 'forum_threads/forum_thread_conversation', locals: { forum_thread: forum_thread } %>
+  <% end %>
+</div>

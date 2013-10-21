@@ -1,4 +1,6 @@
 class PeopleController < ApplicationController
+  include Authorizer
+
   respond_to :html
 
   layout 'admin_panel'
@@ -27,26 +29,12 @@ class PeopleController < ApplicationController
 
   def create
     @person = Person.new person_params
-    if person_params[:profile_attributes] && person_params[:profile_attributes][:birthdate]
-      begin
-      @person.profile.birthdate = Date.strptime(person_params[:profile_attributes][:birthdate],
-                                                "%m\/%d\/%Y")
-      rescue ArgumentError
-      end
-    end
     flash[:notice] = 'Person was saved successfully!' if @person.save
     respond_with @person
   end
 
   def update
     @person = Person.find params[:id]
-    if person_params[:profile_attributes] && person_params[:profile_attributes][:birthdate]
-      begin
-      @person.profile.birthdate = Date.strptime(person_params[:profile_attributes][:birthdate],
-                                                "%m\/%d\/%Y")
-      rescue ArgumentError
-      end
-    end
     if @person.update_attributes person_params
       flash[:notice] = 'Person was updated successfully!'
     end

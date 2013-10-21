@@ -21,6 +21,6 @@ module PeopleHelper
       img = image_tag(gravatar_url, alt: person.email, class: "thumbnail")
       return link_to "#{img}".html_safe, url
     end
-    image_tag(gravatar_url, alt: person.email, class: "thumbnail")
+    image_tag(gravatar_url, alt: person.email, class: "thumbnail img-responsive")
   end
 end

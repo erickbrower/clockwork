@@ -12,10 +12,16 @@ class LandingPagesController < ApplicationController
     respond_with @posts
   end
 
+  def forum
+    @forum_threads = ForumThread.all
+    respond_with @forum_threads
+  end
+
   private
   def set_layout
     case action_name
     when 'index' then 'blog'
+    when 'forum' then 'forum'
     end
   end
 
