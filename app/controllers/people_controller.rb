@@ -49,7 +49,7 @@ class PeopleController < ApplicationController
 
   private
   def person_params
-    params.require(:person).permit(:email, :password, :password_confirmation, role_ids: [], 
+    params.require(:person).permit(:email, :password, :password_confirmation, :time_zone, role_ids: [], 
                                    profile_attributes: [ :first_name, :last_name, :birthdate, :twitter_handle, :bio])
   end
 end

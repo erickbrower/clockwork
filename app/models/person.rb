@@ -14,6 +14,7 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :profile
 
   validates :email, presence: true
+  validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map(&:name)
 
   def has_role?(role_title)
     roles.select { |r| r.title == role_title.to_s }.any?

@@ -13,6 +13,9 @@
         <span class="blog-post-date">
           <%= blog_post_sub_header_for blog_post %>
         </span>
+        <% if blog_post.tags.any? %>
+        <span class="pull-right label tags">Tags <%= blog_post_tags_for blog_post %></span>
+        <% end %>
       </div>
     </div>
   </div>
@@ -25,11 +28,6 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-    <% if blog_post.tags.any? %>
-      <div class="pull-right">
-        <span class="label tags">Tags</span><%= blog_post_tags_for blog_post %>
-      </div>
-    <% end %>
     </div>
   </div>
   <div class="row">

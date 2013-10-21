@@ -1,16 +1,24 @@
 module PeopleHelper
-  def edit_person_button(person)
+  def person_new_button
+    link_to '<span class="glyphicon glyphicon-plus"></span> New Person'.html_safe, new_person_path
+  end
+
+  def person_edit_button_for(person)
     link_to "<span class='glyphicon glyphicon-pencil'></span>".html_safe, 
             edit_person_path(person), 
             class: 'btn btn-sm btn-primary'
   end
 
-  def delete_person_button(person)
+  def person_delete_button_for(person)
     link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, 
             person_path(person), 
             method: :delete, 
             class: 'btn btn-sm btn-danger'
 
+  end
+
+  def person_admin_grid_for(people)
+    render partial: 'people/admin_grid', locals: { people: people } 
   end
 
   def gravatar_for(person, options = { size: 100 })

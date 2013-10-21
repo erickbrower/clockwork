@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="header" style='padding-left: 0px; padding-right: 0px;'>
+    <div class="header">
       <ul class="nav nav-pills pull-right">
-        <li class="active"> <%= link_to '<span class="glyphicon glyphicon-plus"></span> New Post'.html_safe, new_blog_post_path %> </li>
-        <li> <%= link_to '<span class="glyphicon glyphicon-new-window"></span> View Blog'.html_safe, root_path %> </li>
+        <li class="active"> <%= new_button_for @blog_posts.first %> </li>
+        <li> <%= view_blog_button %> </li>
       </ul>
       <h3> Manage Blog Posts </h3>
     </div>
@@ -11,30 +11,6 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <table class='table table-hover table-condensed'>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Status</th>
-          <th>Created</th>
-          <th>Edited</th>
-          <th>Options</th>
-        </tr>
-      </thead>
-      <tbody style="font-size: 14px;">
-      <% @posts.each do |post| %>
-        <tr>
-        <td><strong><%= link_to post.title, blog_post_path(post) %></strong></td>
-        <td><%= status_label(post) %></td>
-        <td><%= post.created_at %></td>
-        <td><%= post.updated_at %></td>
-        <td>
-          <%= edit_blog_post_button(post) %>
-          <%= delete_blog_post_button(post) %>
-        </td>
-      </tr>
-    <% end %>
-      </tbody>
-    </table>
+    <%= admin_grid_for @blog_posts %>
   </div>
 </div>

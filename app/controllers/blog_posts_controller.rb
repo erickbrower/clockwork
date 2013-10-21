@@ -7,9 +7,9 @@ class BlogPostsController < ApplicationController
   layout :set_layout
 
   def index
-    @posts = BlogPost.all
-    head(401) and return unless can?(current_person, :view_blog_post, @posts.first)
-    respond_with @posts
+    @blog_posts = BlogPost.all
+    head(401) and return unless can?(current_person, :view_blog_post, @blog_posts.first)
+    respond_with @blog_posts
   end
 
   def new

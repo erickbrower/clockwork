@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131020210349) do
+ActiveRecord::Schema.define(version: 20131021041859) do
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20131020210349) do
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "time_zone"
   end
 
   add_index "people", ["confirmation_token"], name: "index_people_on_confirmation_token", unique: true

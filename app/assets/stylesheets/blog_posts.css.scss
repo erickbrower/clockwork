@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#blog-posts-index {
+  div.header {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  table.table {
+    tbody {
+      font-size: 14px;
+    }
+  }
+}
 
 #sidebar {
   min-height: 600px;
@@ -47,9 +59,6 @@
 
 div.blog-post-partial {
 
-  div.blog-post-admin-button-partial {
-  }
-
   div.row {
 
     legend {
@@ -77,6 +86,8 @@ div.blog-post-partial {
     span.tags {
       color: rgba(153, 153, 153, 0.85);
       font-size: 14px;
+      position: relative;
+      bottom: 5px;
     }
 
     div.header {
