@@ -39,7 +39,7 @@ module BlogPostsHelper
     end
   end
 
-  def blog_post_comments(blog_post)
+  def blog_post_comments_for(blog_post)
     render partial: 'blog_posts/comments', locals: { blog_post: blog_post }
   end
 
