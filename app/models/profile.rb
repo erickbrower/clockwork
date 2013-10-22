@@ -7,6 +7,10 @@ class Profile < ActiveRecord::Base
   validates :last_name, presence: true
   validates :birthdate, presence: true
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def self.allowed(person, profile)
     rules = []
     return rules unless person.instance_of? Person

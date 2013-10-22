@@ -25,10 +25,10 @@ module ButtonHelper
 
   def button_with_dropdown(btn, dropdown)
     content = ''
-    content +=  button_tag type: 'button', class: "btn #{btn[:class]}" do
-        link_to(btn[:text], btn[:url], btn[:opts]).html_safe
+    content +=  button_tag type: 'button', class: "btn #{btn[:css_class]}" do
+        link_to(btn[:text], btn[:url], btn[:opts])
     end
-    content += button_tag type: 'button', class: "btn #{btn_class} dropdown-toggle", data: { toggle: 'dropdown' } do
+    content += button_tag type: 'button', class: "btn #{btn[:css_class]} dropdown-toggle", data: { toggle: 'dropdown' } do
         icon(dropdown[:icon] || :cog)
     end
     list_content = ''
@@ -39,7 +39,7 @@ module ButtonHelper
     end
 
     content += content_tag :ul, list_content.html_safe, class: 'dropdown-menu', role: 'menu'
-    content_tag :div, content.html_safe, class: 'btn-group'
+    content_tag :div, content.html_safe, class: 'btn-group btn-with-dropdown'
   end
 
   private

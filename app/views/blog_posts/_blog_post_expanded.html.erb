@@ -1,15 +1,17 @@
 <div class="blog-post-expanded-partial">
   <div class="row">
     <div class="col-md-12">
-      <%= publish_combo_button_for blog_post, btn_group_class: 'pull-right' %>
+      <span class="pull-right">
+        <%= publish_button_with_dropdown blog_post %>
+      </span>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
       <div class="header">
-        <h3><%= blog_post_header_title_for blog_post %></h3>
+        <h3><%= link_to blog_post.title, blog_post_path(blog_post) %></h3>
         <span class="blog-post-date">
-          <%= blog_post_sub_header_for blog_post %>
+          <%= blog_post_sub_header blog_post %>
         </span>
         <% if blog_post.tags.any? %>
           <span class="pull-right label tags">Tags <%= blog_post_tags_for blog_post %></span>

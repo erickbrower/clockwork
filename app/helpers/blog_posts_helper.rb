@@ -1,39 +1,35 @@
 module BlogPostsHelper
 
   def publish_button_with_dropdown(blog_post)
-    return unless can?(current_person, :update_blog_post, blog_post)
-    btn_text = 'Publish'
-    btn_link = publish_blog_post_path(blog_post)
-    btn_style = 'btn-success'
+    return unless can? current_person, :update_blog_post, blog_post
+    btn = {}
+    btn[:text] = 'Publish'
+    btn[:url] = publish_blog_post_path blog_post
+    btn[:css_class] = 'btn-success'
     if blog_post.published? 
-      btn_text = 'Unpublish'
-      btn_link = unpublish_blog_post_path(blog_post)
-      btn_style = 'btn-warning'
+      btn[:text] = 'Unpublish'
+      btn[:url]= unpublish_blog_post_path blog_post
+      btn[:css_class]= 'btn-warning'
     end
-    button_with_dropdown(btn_text, 
-                         btn_link, 
-                         {},
-                         [
-                           { 
-                             text: "Edit #{icon(:pencil, 'pull-right')}",
-                             url: edit_blog_post_path(blog_post),
-                             opts: {}
-                           },
-                           {
-                             text: "Delete #{icon(:remove_circle, 'pull-right')}",
-                             url: blog_post_path(blog_post),
-                             opts: { method: :delete }
-                           } 
-                         ],
-                         btn_style) 
+    dropdown = {
+      content: [
+        {
+          text: "Edit #{icon(:pencil, 'pull-right')}",
+          url: edit_blog_post_path(blog_post),
+          opts: {}
+        },
+        {
+          text: "Delete #{icon(:remove_circle, 'pull-right')}",
+          url: blog_post_path(blog_post),
+          opts: { method: :delete }
+        } 
+      ]
+    }
+    button_with_dropdown(btn, dropdown)
   end
 
-  def render_blog_post_header_title_for(blog_post)
-    link_to blog_post.title, blog_post_path(blog_post)
-  end
-
-  def render_blog_post_sub_header_for(blog_post)
-    author_link = link_to "#{blog_post.author.profile.first_name} #{blog_post.author.profile.last_name}", person_path(blog_post.author)
+  def blog_post_sub_header(blog_post)
+    author_link = link_to blog_post.author.profile.full_name, person_path(blog_post.author)
     "By #{author_link} at #{blog_post.created_at}".html_safe
   end
 
