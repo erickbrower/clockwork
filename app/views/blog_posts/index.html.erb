@@ -1,16 +1,15 @@
 <div class="row">
   <div class="col-md-12">
     <div class="header">
-      <ul class="nav nav-pills pull-right">
-        <li class="active"> <%= new_button_for @blog_posts %> </li>
-        <li> <%= view_blog_button %> </li>
-      </ul>
+      <span class="pull-right">
+        <%= new_large_primary_button_for @blog_posts %>
+      </span>
       <h3> Manage Blog Posts </h3>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    <%= admin_grid_for @blog_posts %>
+    <%= render partial: 'blog_posts/admin_grid', locals: { blog_posts: @blog_posts } %>
   </div>
 </div>

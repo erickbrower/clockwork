@@ -14,4 +14,8 @@ module ForumThreadsHelper
     end
     tags.html_safe
   end
+
+  def render_forum_thread_collapsed_min(forum_thread)
+    render partial: 'forum_threads/forum_thread_collapsed_min', locals: { forum_thread: forum_thread }
+  end
 end

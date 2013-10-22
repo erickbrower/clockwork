@@ -10,6 +10,6 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <%= admin_grid_for @people %>
+    <%= render partial: 'people/admin_grid', locals: { people: @people } %>
   </div>
 </div>

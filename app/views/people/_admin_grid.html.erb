@@ -16,8 +16,8 @@
     <td><%= formatted_date_for person.created_at %></td>
     <td><%= formatted_date_for person.updated_at %></td>
     <td>
-      <%= edit_button_for person %>
-      <%= delete_button_for person %>
+      <%= grid_edit_button_for person %>
+      <%= grid_destroy_button_for person %>
     </td>
   </tr>
 <% end %>

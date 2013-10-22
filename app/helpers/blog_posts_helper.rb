@@ -1,32 +1,38 @@
 module BlogPostsHelper
-  def blog_post_new_button
-    link_to '<span class="glyphicon glyphicon-plus"></span> New Post'.html_safe, new_blog_post_path
+
+  def publish_button_with_dropdown(blog_post)
+    return unless can?(current_person, :update_blog_post, blog_post)
+    btn_text = 'Publish'
+    btn_link = publish_blog_post_path(blog_post)
+    btn_style = 'btn-success'
+    if blog_post.published? 
+      btn_text = 'Unpublish'
+      btn_link = unpublish_blog_post_path(blog_post)
+      btn_style = 'btn-warning'
+    end
+    button_with_dropdown(btn_text, 
+                         btn_link, 
+                         {},
+                         [
+                           { 
+                             text: "Edit #{icon(:pencil, 'pull-right')}",
+                             url: edit_blog_post_path(blog_post),
+                             opts: {}
+                           },
+                           {
+                             text: "Delete #{icon(:remove_circle, 'pull-right')}",
+                             url: blog_post_path(blog_post),
+                             opts: { method: :delete }
+                           } 
+                         ],
+                         btn_style) 
   end
 
-  def blog_post_edit_button_for(blog_post)
-    link_to "<span class='glyphicon glyphicon-pencil'></span>".html_safe, 
-      edit_blog_post_path(blog_post), 
-      class: 'btn btn-sm btn-primary'
-  end
-
-  def blog_post_delete_button_for(blog_post)
-    link_to "<span class='glyphicon glyphicon-remove'></span>".html_safe, 
-      blog_post_path(blog_post), 
-      method: :delete, 
-      class: 'btn btn-sm btn-danger'
-  end
-
-  def publish_combo_button_for(blog_post, locals={})
-    all = { blog_post: blog_post }
-    all.merge(locals)
-    render partial: 'blog_posts/publish_combo_button', locals: all
-  end
-
-  def blog_post_header_title_for(blog_post)
+  def render_blog_post_header_title_for(blog_post)
     link_to blog_post.title, blog_post_path(blog_post)
   end
 
-  def blog_post_sub_header_for(blog_post)
+  def render_blog_post_sub_header_for(blog_post)
     author_link = link_to "#{blog_post.author.profile.first_name} #{blog_post.author.profile.last_name}", person_path(blog_post.author)
     "By #{author_link} at #{blog_post.created_at}".html_safe
   end
@@ -53,10 +59,6 @@ module BlogPostsHelper
 
   def blog_post_admin_grid_for(blog_posts)
     render partial: 'blog_posts/admin_grid', locals: { blog_posts: blog_posts } 
-  end
-
-  def view_blog_button
-    link_to '<span class="glyphicon glyphicon-new-window"></span> View Blog'.html_safe, root_path
   end
 
 end

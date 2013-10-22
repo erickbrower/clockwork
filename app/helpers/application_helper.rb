@@ -7,23 +7,11 @@ module ApplicationHelper
     datetime.to_formatted_s(:long)
   end
 
-  [:admin_grid, :edit_button, :delete_button, :comments].each do |element|
-    define_method "#{element}_for" do |resource|
-      delegate_to_helper(__method__, resource)
-    end
-
-    define_method :new_button_for do |resource|
-      delegate_to_helper(:new_button, resource, false)
-    end
-  end
-
   private 
-  def delegate_to_helper(method, res, send_args=true)
+  def delegate_to_helper(method, res)
     res_name = res.respond_to?(:each) ? res.first.class.name : res.class.name
-    if send_args
-      send("#{res_name.underscore}_#{method}", res)
-    else
-      send("#{res_name.underscore}_#{method}")
-    end
+    send("#{res_name.underscore}_#{method}", res)
   end
+
+
 end

@@ -1,0 +1,38 @@
+<div class="blog-post-expanded-partial">
+  <div class="row">
+    <div class="col-md-12">
+      <%= publish_combo_button_for blog_post, btn_group_class: 'pull-right' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="header">
+        <h3><%= blog_post_header_title_for blog_post %></h3>
+        <span class="blog-post-date">
+          <%= blog_post_sub_header_for blog_post %>
+        </span>
+        <% if blog_post.tags.any? %>
+          <span class="pull-right label tags">Tags <%= blog_post_tags_for blog_post %></span>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 blog-post-body">
+      <%= blog_post.body_html.html_safe %>
+      <br/>
+      <br/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <br />
+      <br />
+    </div>
+  </div>
+
+</div>
