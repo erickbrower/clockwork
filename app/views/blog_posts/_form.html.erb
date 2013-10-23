@@ -1,19 +1,5 @@
 <%= form_for post  do |f| %>
-  <% if post.errors.any? %>
-  <div class="row">
-  <div class="col-md-12">
-    <div class="alert alert-danger alert-dismissable">
-      <h5><strong>Oh noes!</strong> Errors prevented this blog post from being saved!</h5>
-      <dl class="dl-horizontal">
-        <% post.errors.messages.each do |field, errors| %>
-          <dt><%= field.to_s.humanize %></dt>
-        <dd><%= errors.first.to_s.humanize %></dd>
-      <% end %>
-      </dl>
-    </div>
-  </div>
-</div>
-  <% end %>
+  <%= render partial: 'shared/form_errors', locals: { item: post } %>
 <div class="row">
   <div class="col-md-12">
     <% if field_has_errors?(:title, post.errors) %>

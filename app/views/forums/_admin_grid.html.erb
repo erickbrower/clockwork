@@ -1,0 +1,20 @@
+<table class='table table-hover table-condensed'>
+  <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody style="font-size: 14px;">
+  <% forums.each do |forum| %>
+    <tr>
+    <td><%= link_to forum.title, forum_path(forum) %></td>
+    <td>
+      <%= grid_edit_button_for forum %>
+      <%= grid_destroy_button_for forum %>
+    </td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+

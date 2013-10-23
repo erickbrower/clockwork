@@ -3,10 +3,11 @@ Clockwork::Application.routes.draw do
 
   get 'forum' => 'landing_pages#forum'
 
+  resources :forums
+
   resources :forum_threads
 
   resources :forum_posts
-
 
   devise_for :people, path: 'auth'
 

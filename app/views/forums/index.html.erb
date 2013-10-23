@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="header">
+      <span class="pull-right">
+        <%= new_large_primary_button_for @forums %>
+      </span>
+      <h3> Manage Forums </h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= render partial: 'forums/admin_grid', locals: { forums: @forums } %>
+  </div>
+</div>

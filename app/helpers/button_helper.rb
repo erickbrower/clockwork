@@ -9,6 +9,7 @@ module ButtonHelper
     [:large, :small, :extra_small].each do |btn_size|
       [:primary, :warning, :danger, :info].each do |btn_color|
         define_method "#{btn_action}_#{btn_size}_#{btn_color}_button_for" do |resource, options={}|
+          options[:class] = 'btn'
           build_button btn_action, resource, options, btn_size, btn_color
         end
       end
@@ -86,12 +87,14 @@ module ButtonHelper
   end
 
   def get_resource_name(resource)
-    resource.respond_to?(:each) ? resource.first.class.name : resource.class.name
+    rname = resource.name if resource.is_a? ActiveRecord::Relation
+    rname ||= resource.class.name
   end
 
   def build_button(btn_action, resource, options, btn_size=nil, btn_color=nil)
     rname = get_resource_name resource
-    btn_class = options[:class].split ' '
+    btn_class = []
+    btn_class = options[:class].split ' ' if options[:class]
     btn_class.push get_button_size_class(btn_size) if btn_size
     btn_class.push get_button_color_class(btn_color) if btn_color
     options[:class] = btn_class.join ' '

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131021041859) do
+ActiveRecord::Schema.define(version: 20131023014448) do
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
@@ -57,9 +57,21 @@ ActiveRecord::Schema.define(version: 20131021041859) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "person_id"
+    t.integer  "forum_id"
   end
 
+  add_index "forum_threads", ["forum_id"], name: "index_forum_threads_on_forum_id"
   add_index "forum_threads", ["person_id"], name: "index_forum_threads_on_person_id"
+
+  create_table "forums", force: true do |t|
+    t.string   "title"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "person_id"
+  end
+
+  add_index "forums", ["person_id"], name: "index_forums_on_person_id"
 
   create_table "people", force: true do |t|
     t.string   "email",                  default: "", null: false
