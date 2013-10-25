@@ -39,6 +39,7 @@ class BlogPost < ActiveRecord::Base
 
   def self.allowed(person, blog_post)
     rules = []
+    rules << :view_blog_post
     return rules unless person.instance_of? Person
     return rules unless blog_post.instance_of? BlogPost
     rules += all_authorizations  if person.has_role? :administrator
@@ -46,7 +47,6 @@ class BlogPost < ActiveRecord::Base
     if blog_post.author && blog_post.authored_by?(person)
       rules += [:update_blog_post, :destroy_blog_post] 
     end
-    rules << :view_blog_post
     rules.uniq
   end
   

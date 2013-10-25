@@ -32,12 +32,11 @@ class ForumsController < ApplicationController
 
   def update
     @forum = Forum.find params[:id]
-    head(401) and return unless can?(current_person, :update_forum, @post)
+    head(401) and return unless can?(current_person, :update_forum, @forum)
     if @forum.update_attributes forum_params
       flash[:notice] = 'Forum was updated successfully!'
     end
     respond_with @forum
-
   end
 
   def show
@@ -48,7 +47,7 @@ class ForumsController < ApplicationController
   
   def destroy
     @forum = Forum.find params[:id]
-    head(401) and return unless can?(current_person, :destroy_forum, @ofurm)
+    head(401) and return unless can?(current_person, :destroy_forum, @forum)
     @forum.delete
     respond_with @forum
   end
@@ -60,6 +59,6 @@ class ForumsController < ApplicationController
 
   private
   def forum_params
-    params.require(:forum).permit(:title)
+    params.require(:forum).permit(:title, :description)
   end
 end

@@ -1,36 +1,20 @@
 <%= form_for post  do |f| %>
   <%= render partial: 'shared/form_errors', locals: { item: post } %>
-<div class="row">
-  <div class="col-md-12">
-    <% if field_has_errors?(:title, post.errors) %>
-    <div class="form-group has-error">
-    <% else %>
-    <div class="form-group">
-    <% end %>
-      <%= f.text_field :title, { placeholder: 'Title', class: 'form-control' } %>
-    </div>
+<% if field_has_errors?(:title, post.errors) %>
+  <div class="form-group has-error">
+<% else %>
+  <div class="form-group">
+<% end %>
+    <%= f.text_field :title, { placeholder: 'Title', class: 'form-control' } %>
   </div>
-</div>
-  <div class="row">
-    <div class="col-md-12">
-      <%= f.text_area :body, { placeholder: 'Write something!', class: 'form-control', rows: '50', style: 'display: none;', id: 'blog-post-body-text' } %>
-      <div id="epiceditor" class="form-group">
-      </div>
-    </div>
+  <%= f.text_area :body, { placeholder: 'Write something!', class: 'form-control', rows: '50', style: 'display: none;', id: 'blog-post-body-text' } %>
+  <div id="epiceditor" class="form-group">
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
-        <%= f.label :tag_list %>
-        <%= f.text_field :tag_list, { placeholder: 'kitesurfing, business trip, tutorial', class: 'form-control' } %>
-      </div>
-    </div>
+  <div class="form-group">
+    <%= f.label :tag_list %>
+    <%= f.text_field :tag_list, { placeholder: 'kitesurfing, business trip, tutorial', class: 'form-control' } %>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
-        <%= f.submit 'Save', { class: 'btn btn-primary form-control' } %>
-      </div>
-    </div>
+  <div class="form-group">
+    <%= f.submit 'Save', { class: 'btn btn-primary form-control' } %>
   </div>
 <% end %>

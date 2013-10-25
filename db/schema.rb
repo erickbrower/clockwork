@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131023014448) do
+ActiveRecord::Schema.define(version: 20131023044358) do
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20131023014448) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "person_id"
+    t.string   "description"
   end
 
   add_index "forums", ["person_id"], name: "index_forums_on_person_id"

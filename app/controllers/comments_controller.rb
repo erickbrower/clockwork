@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
 
   before_filter :load_commentable
 
+  before_filter :authorize_person!, only: [:create]
+
   def index
     @comments = @commentable.comments
   end
@@ -13,6 +15,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.new comment_params
+    @comment.author = current_person
     if @comment.save
       flash[:notice] = 'Added comment successfully!'
     else

@@ -3,7 +3,7 @@
     <%= gravatar_for(comment.author, { size: 35 }) %>
   </div>
   <div class="col-md-11">
-    <h5><strong><%= link_to "#{comment.author.profile.first_name} #{comment.author.profile.last_name}", "#" %></strong><span class="comment-created-at"> at <%= comment.created_at %></span></h5>
+    <h5><strong><%= link_to "#{comment.author.profile.first_name} #{comment.author.profile.last_name}", "#" %></strong><span class="comment-created-at"> on <%= formatted_date_for(comment.created_at) %></span></h5>
     <p><%= comment.content %></p>
   </div>
 </div>

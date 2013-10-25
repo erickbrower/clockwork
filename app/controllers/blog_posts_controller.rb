@@ -1,7 +1,7 @@
 class BlogPostsController < ApplicationController
   respond_to :html
 
-  before_filter :authenticate_person!, except: [:index, :show]
+  before_filter :authenticate_person!, except: [:show]
   before_filter :add_abilities
 
   layout :set_layout

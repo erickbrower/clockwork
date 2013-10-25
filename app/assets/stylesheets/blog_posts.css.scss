@@ -52,7 +52,7 @@
 
 #content {
   min-height: 500px;
-  background-color: #f8f8f8; 
+  background-color: #ffffff; 
   border: 1px #e7e7e7 solid;
   padding: 15px 20px 20px 20px;
 }
@@ -71,6 +71,7 @@ div.blog-post-partial {
 
     div.blog-post-body {
       margin-top: 20px;
+      padding: 0px 30px;
     }
 
     span.author-signature {
@@ -102,7 +103,7 @@ div.blog-post-partial {
   }
 }
 
-div.btn-with-dropdown {
+div.btn-split {
 
   width: 120px;
 

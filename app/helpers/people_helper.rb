@@ -1,4 +1,11 @@
 module PeopleHelper
+  def new_person_button
+    link_button new_person_path do |b|
+      b.text = "#{icon(:plus)} New Person"
+      b.size = :large
+      b.option = :primary
+    end
+  end
   def person_new_button
     link_to '<span class="glyphicon glyphicon-plus"></span> New Person'.html_safe, new_person_path
   end

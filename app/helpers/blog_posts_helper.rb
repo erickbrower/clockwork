@@ -1,36 +1,30 @@
 module BlogPostsHelper
 
-  def publish_button_with_dropdown(blog_post)
-    return unless can? current_person, :update_blog_post, blog_post
-    btn = {}
-    btn[:text] = 'Publish'
-    btn[:url] = publish_blog_post_path blog_post
-    btn[:css_class] = 'btn-success'
-    if blog_post.published? 
-      btn[:text] = 'Unpublish'
-      btn[:url]= unpublish_blog_post_path blog_post
-      btn[:css_class]= 'btn-warning'
+  def new_blog_post_button
+    link_button new_blog_post_path do |b| 
+      b.text = "#{icon(:plus)} New Blog Post" 
+      b.size = :large
+      b.option = :primary
     end
-    dropdown = {
-      content: [
-        {
-          text: "Edit #{icon(:pencil, 'pull-right')}",
-          url: edit_blog_post_path(blog_post),
-          opts: {}
-        },
-        {
-          text: "Delete #{icon(:remove_circle, 'pull-right')}",
-          url: blog_post_path(blog_post),
-          opts: { method: :delete }
-        } 
-      ]
-    }
-    button_with_dropdown(btn, dropdown)
+  end
+
+  def publish_split_button(blog_post)
+    edit_text = "Edit #{icon(:pencil, 'pull-right')}"
+    edit_link = link_to edit_text.html_safe, edit_blog_post_path(blog_post)
+    delete_text = "Delete #{icon(:remove, 'pull-right')}"
+    delete_link = link_to delete_text.html_safe, blog_post_path(blog_post), method: :delete
+    split_button do |b|
+      b.text = 'Publish'
+      b.url = publish_blog_post_path blog_post
+      b.option = :success
+      b.icon = :cog
+      b.dropdown_links = [edit_link, delete_link] 
+    end
   end
 
   def blog_post_sub_header(blog_post)
     author_link = link_to blog_post.author.profile.full_name, person_path(blog_post.author)
-    "By #{author_link} at #{blog_post.created_at}".html_safe
+    "By #{author_link} on #{formatted_date_for(blog_post.created_at)}".html_safe
   end
 
   def status_label_for(blog_post)
@@ -41,20 +35,12 @@ module BlogPostsHelper
     end
   end
 
-  def blog_post_comments_for(blog_post)
-    render partial: 'blog_posts/comments', locals: { blog_post: blog_post }
-  end
-
   def blog_post_tags_for(blog_post)
     tags = ''
     blog_post.tags.each do |tag|
       tags += "<span class='label label-info'>#{tag}</span> "
     end
     tags.html_safe
-  end
-
-  def blog_post_admin_grid_for(blog_posts)
-    render partial: 'blog_posts/admin_grid', locals: { blog_posts: blog_posts } 
   end
 
 end

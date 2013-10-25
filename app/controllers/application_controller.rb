@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   def set_globals
     @app_title = 'Clockwork'
     @page_id = "#{controller_name.dasherize}-#{action_name.dasherize}"
+    @dashboard_items = {'Blog Posts' => blog_posts_path, 'People' => people_path, 'Forums' => forums_path}
   end
 
   def ensure_person_time_zone(&block)

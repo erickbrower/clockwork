@@ -10,20 +10,11 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <% if request.url.include?(blog_posts_path) %>
-        <li class='active'>
-        <% else %>
-        <li>
+        <% @dashboard_items.each do |lbl, url| %>
+          <% content = link_to lbl, url %>
+          <%= request.url.include?(url) ? content_tag(:li, content, class: 'active') : content_tag(:li, content) %>
+          </li>
         <% end %>
-          <%= link_to 'Blog Posts', blog_posts_path %>
-        </li>
-        <% if request.url.include?(people_path) %>
-        <li class='active'>
-        <% else %>
-        <li>
-        <% end %>
-          <%= link_to 'People', people_path %>
-        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">

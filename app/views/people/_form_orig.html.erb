@@ -1,0 +1,108 @@
+<%= form_for person do |f| %>
+  <%= render partial: 'shared/form_errors', locals: { item: person } %>
+<div class="row">
+  <div class="col-md-6">
+    <legend> Basic Info </legend>
+      <div class="row">
+        <% if field_has_errors?(:password, person.errors) %>
+          <div class="form-group col-md-6 has-error">
+        <% else %>
+            <div class="form-group col-md-6">
+          <% end %>
+            <%= f.password_field :password, { placeholder: 'Password', class: 'form-control' } %>
+          </div>
+          <% if field_has_errors?(:password, person.errors) %>
+            <div class="form-group col-md-6 has-error">
+          <% else %>
+              <div class="form-group col-md-6">
+            <% end %>
+              <%= f.password_field :password_confirmation, { placeholder: 'Password Confirmation', class: 'form-control' } %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <%= f.label :time_zone %>
+              <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, { default: "Pacific Time (US & Canada)"}, { class: 'form-control' } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <legend> Roles </legend>
+          </div>
+          <% Role.all.each do |role| %>
+            <div class="row">
+            <div class="col-md-12">
+              <div class="checkbox">
+                <% chk_box = check_box_tag :role_ids, role.id, person.roles.include?(role), name: 'person[role_ids][]' %>
+                <%= label_tag :role_ids, "#{chk_box} #{role.title.humanize}".html_safe %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <legend> Profile </legend>
+        </div>
+      </div>
+      <%= f.fields_for :profile do |pf| %>
+        <div class="row">
+        <% if field_has_errors?(:first_name, person.profile.errors) %>
+          <div class="col-md-6 form-group has-error">
+        <% else %>
+            <div class="col-md-6 form-group">
+          <% end %>
+            <%= pf.text_field :first_name, { placeholder: 'First Name', class: 'form-control' } %>
+          </div>
+          <% if field_has_errors?(:last_name, person.profile.errors) %>
+            <div class="col-md-6 form-group has-error">
+          <% else %>
+              <div class="col-md-6 form-group">
+            <% end %>
+              <%= pf.text_field :last_name, { placeholder: 'Last Name', class: 'form-control' } %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">@</span>
+                  <%= pf.text_field :twitter_handle, { placeholder: 'Twitter Handle', class: 'form-control' } %>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-gift"></span> + <span class="glyphicon glyphicon-calendar"></span></span>
+                  <%= pf.text_field :birthdate, { placeholder: 'Birthdate', class: 'form-control' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <%= pf.text_area :bio, { placeholder: 'Your bio: Tell everyone something about yourself!', rows: '10', class: 'form-control' } %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+            </div>
+          </div>
+        <% end %>
+          <div class="row">
+            <div class="col-md-12">
+              <br />
+              <%= f.submit 'Save', { class: 'btn btn-primary form-control' } %>
+            </div>
+          </div>
+        <% end %>
+          <script>
+$('#person_profile_attributes_birthdate').datepicker({
+dateFormat: 'yy-mm-dd',
+changeMonth: true,
+changeYear: true
+});
+          </script>
