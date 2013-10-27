@@ -1,0 +1,15 @@
+<div class="panel <%= panel.wrapper_class %>">
+  <% if panel.heading %>
+  <div class="panel-heading">
+    <%= panel.heading %>
+  </div>
+  <%end %>
+  <div class="panel-body">
+    <%= panel.body %>
+  </div>
+  <% if panel.footer %>
+  <div class="panel-footer">
+    <%= panel.footer %>
+  </div>
+  <% end %>
+</div>

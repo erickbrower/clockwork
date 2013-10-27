@@ -2,4 +2,42 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#landing-pages-forum {
+  padding-top: 40px;
+  padding-bottom: 40px;
 
+  div.header {
+    margin-bottom: 30px;
+    border-bottom: 1px #e5e5e5 solid;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 0;
+    h3 {
+      margin-bottom: 0;
+      line-height: 40px;
+      padding-bottom: 19px;
+    }
+  }
+
+  div.container {
+    background-color: #ffffff;
+    width: 900px;
+
+    li.media {
+      border: 1px #e5e5e5 solid;
+      border-radius: 5px;
+      padding: 10px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      -moz-box-shadow: 2px 2px 2px #e5e5e5;
+      -webkit-box-shadow: 2px 2px 2px #e5e5e5;
+      box-shadow: 2px 2px 2px #e5e5e5;
+    }
+  }
+}
+
+#landing-pages-index {
+  background-color: #eee;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}

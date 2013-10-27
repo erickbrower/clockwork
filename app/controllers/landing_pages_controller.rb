@@ -13,8 +13,8 @@ class LandingPagesController < ApplicationController
   end
 
   def forum
-    @forums = Forum.all
-    respond_with @forums
+    @forum_categories = ForumCategory.all
+    respond_with @forum_categories
   end
 
   private

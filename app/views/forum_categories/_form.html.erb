@@ -1,0 +1,12 @@
+<%= form_for forum_category do |f| %>
+  <%= render partial: 'shared/form_errors', locals: { item: forum_category } %>
+  <div class="form-group">
+    <%= f.text_field :title, { placeholder: 'Title', class: 'form-control' } %>
+  </div>
+  <div class="form-group">
+    <%= f.text_area :description, { placeholder: 'Description', class: 'form-control', rows: 5 } %>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'Save', { class: 'btn btn-primary form-control' } %>
+  </div>
+<% end %>

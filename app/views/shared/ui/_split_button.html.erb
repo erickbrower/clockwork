@@ -1,18 +1,18 @@
 <!-- Split button -->
-<div class="btn-group btn-split <%= options.wrapper_class.to_s %>">
-  <button type="button" class="btn btn-<%= options.option.to_s %>">
-    <%= link_to options.text, options.url %>
+<div class="btn-group btn-split <%= split_button.wrapper_class.to_s %>">
+  <button type="button" class="btn btn-<%= split_button.option.to_s %>">
+    <%= link_to split_button.text, split_button.url %>
   </button>
-  <button type="button" class="btn btn-<%= options.option.to_s %> dropdown-toggle" data-toggle="dropdown">
-    <% if options.icon %>
-      <span class="glyphicon glyphicon-<%="#{options.icon}"%>"></span>
+  <button type="button" class="btn btn-<%= split_button.option.to_s %> dropdown-toggle" data-toggle="dropdown">
+    <% if split_button.icon %>
+      <span class="glyphicon glyphicon-<%="#{split_button.icon}"%>"></span>
     <% else %>
     <span class="caret"></span>
     <% end %>
   </button>
   <ul class="dropdown-menu" role="menu">
-    <% options.dropdown_links.each do |links| %>
-      <li><%= links %></li>
+    <% split_button.dropdown_links.each do |link| %>
+      <li><%= link %></li>
     <% end %>
   </ul>
 </div>

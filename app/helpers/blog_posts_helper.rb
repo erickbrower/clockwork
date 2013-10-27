@@ -18,7 +18,8 @@ module BlogPostsHelper
       b.url = publish_blog_post_path blog_post
       b.option = :success
       b.icon = :cog
-      b.dropdown_links = [edit_link, delete_link] 
+      b.dropdown_links << edit_link
+      b.dropdown_links << delete_link
     end
   end
 

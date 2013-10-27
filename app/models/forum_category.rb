@@ -1,14 +1,14 @@
-class Forum < ActiveRecord::Base
+class ForumCategory < ActiveRecord::Base
   include Authorizable
 
-  has_many :forum_threads
-  belongs_to :forum_category
+  has_many :forums
 
-  def self.allowed(person, forum)
+  def self.allowed(person, forum_category)
     rules = []
     return rules unless person.instance_of? Person
-    return rules unless forum.instance_of? Forum
+    return rules unless forum_category.instance_of? ForumCategory
     rules += all_authorizations if person.has_role? :administrator
     rules.uniq
   end
+
 end

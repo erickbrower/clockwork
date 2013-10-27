@@ -31,4 +31,7 @@ class Person < ActiveRecord::Base
     rules << all_authorizations if person.has_role? :administrator
     rules.uniq
   end
+
+  [:first_name, :last_name, :full_name].each { |m| delegate m, to: :profile }
+
 end

@@ -1,27 +1,15 @@
 require 'ostruct'
 
-module ButtonHelper
+module ResourceHelper
 
-  def link_button(url, options={})
-    opts = OpenStruct.new(options.merge({option: :default}))
-    yield opts 
-    css = ['btn']
-    css.push opts.css_class.split(' ') if opts.css_class
-    if opts.size 
-      css.push "btn-#{opts.size}"
-    end
-    css.push "btn-#{opts.option}"
-    options = opts.to_h
-    options[:class] = css.join(' ')
-    text = options.delete(:text)
-    link_to text.html_safe, url, options
-  end
-
-  def view_url_for(resource)
+  def view_url_for(resource, delete)
     url = nil
     if resource.is_a? ActiveRecord::Relation
       rname = resource.name.pluralize.underscore
       url = send "#{rname}_path"
+    elsif delete
+      rname = resource.name.underscore
+      url = send "#{rname}_path", resource
     else
       rname = resource.class.name.underscore
       if resource.respond_to?(:id) && resource.id
@@ -33,7 +21,7 @@ module ButtonHelper
     url
   end
 
-  def link_button_for(resource, &block)
+  def link_button_for(resource, delete=false, &block)
     link_button view_url_for(resource), &block
   end
 
@@ -50,12 +38,7 @@ module ButtonHelper
       b.size = :sm
       b.option = :danger
       b.text = icon :remove
+      b.method = :delete
     end
-  end
-
-  def split_button(options={})
-    opts = OpenStruct.new(options)
-    yield opts 
-    render partial: 'shared/ui/split_button', locals: { options: opts }
   end
 end

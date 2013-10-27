@@ -1,5 +1,15 @@
+require 'api_constraints'
+
 Clockwork::Application.routes.draw do
+  resources :forum_categories
+
   root 'landing_pages#index'
+
+  namespace :api, defaults: { format: 'json' } do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1) do
+      resources :blog_posts
+    end
+  end
 
   resources :forums
 
@@ -19,9 +29,7 @@ Clockwork::Application.routes.draw do
     end
   end
 
-  namespace :api do
-    resources :blog_posts
-  end
+  get 'forum' => 'landing_pages#forum', as: :forum_home
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
