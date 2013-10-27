@@ -31,4 +31,11 @@ module UIHelper
     text = args.delete(:text)
     link_to text.html_safe, url, args
   end
+
+  def panel_tags(args={}, &block)
+    content = capture(&block)
+    pnl = UI::Panel.new args
+    pnl.body = content
+    render pnl
+  end
 end

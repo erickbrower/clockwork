@@ -20,7 +20,7 @@ class ForumCategoriesController < ApplicationController
   end
 
   def create
-    @forum_category = ForumCategory.new forum_params
+    @forum_category = ForumCategory.new forum_category_params
     head(401) and return unless can?(current_person, :create_forum_category, @forum_category)
     flash[:notice] = 'Forum Category was saved successfully!' if @forum_category.save
     respond_with @forum_category

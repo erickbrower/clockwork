@@ -3,6 +3,7 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
+      <th>Category</th>
       <th>Options</th>
     </tr>
   </thead>
@@ -11,6 +12,7 @@
     <tr>
     <td><%= link_to forum.title, forum_path(forum) %></td>
     <td><%= forum.description %></td>
+    <td><%= link_to forum.forum_category.title, forum_category_path(forum.forum_category) %></td>
     <td>
       <%= grid_edit_button_for forum %>
       <%= grid_destroy_button_for forum %>

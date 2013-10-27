@@ -4,6 +4,8 @@ class Forum < ActiveRecord::Base
   has_many :forum_threads
   belongs_to :forum_category
 
+  validates :title, presence: true
+
   def self.allowed(person, forum)
     rules = []
     return rules unless person.instance_of? Person

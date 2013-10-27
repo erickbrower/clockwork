@@ -1,0 +1,30 @@
+<div class="row <%= forum_category_overview.wrapper_class %>">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= forum_category_overview.title %>
+      </div>
+      <div class="panel-body">
+        <%= forum_category_overview.description %>
+      </div>
+      <div class="list-group">
+        <% forum_category_overview.forums.each do |forum| %>
+          <%= link_to forum_path(forum), class: 'list-group-item' do %>
+          <h4 class="list-group-item-heading">
+          <%= forum.title %>
+          <span class='pull-right'>
+            Things
+          </span>
+
+        </h4>
+        <p class="list-group-item-text">
+        <%= forum.description %>
+        </p>
+      <% end %>
+
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

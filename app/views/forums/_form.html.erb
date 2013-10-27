@@ -7,6 +7,10 @@
     <%= f.text_area :description, { placeholder: 'Description', class: 'form-control', rows: 5 } %>
   </div>
   <div class="form-group">
+    <%= f.label :forum_category_id %>
+    <%= f.collection_select :forum_category_id, ForumCategory.all, :id, :title, {}, { class: 'form-control' } %>
+  </div>
+  <div class="form-group">
     <%= f.submit 'Save', { class: 'btn btn-primary form-control' } %>
   </div>
 <% end %>

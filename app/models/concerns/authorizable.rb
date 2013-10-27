@@ -3,7 +3,7 @@ module Authorizable
 
   module ClassMethods
     def authorization_actions
-      [:view, :create, :update, :delete]
+      [:view, :create, :update, :destroy]
     end
 
     def all_authorizations

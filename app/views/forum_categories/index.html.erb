@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="header">
       <span class="pull-right">
-        <%= new_forum_button %>
+        <%= new_forum_category_button %>
       </span>
       <h3> Manage Forum Categories</h3>
     </div>
@@ -10,6 +10,6 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <%= render partial: 'forums/admin_grid', locals: { forums: @forum_categories } %>
+    <%= render partial: 'forum_categories/admin_grid', locals: { forum_categories: @forum_categories } %>
   </div>
 </div>
